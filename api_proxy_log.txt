@@ -396,3 +396,296 @@ Error: Connection timed out after 5007 milliseconds
 2025-03-13 06:18:22 - Response received. HTTP Code: 0, Length: 0
 Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
 Error: Connection timed out after 5001 milliseconds
+2025-03-13 06:51:41 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:51:41 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:51:41 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:51:41 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:51:42 - Response received. HTTP Code: 200, Length: 403
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:51:42 - Response content: summary.Channel=0
+summary.EnteredSubtotal.Hour=114
+summary.EnteredSubtotal.Today=244
+summary.EnteredSubtotal.Total=244
+summary.EnteredSubtotal.TotalInTimeSection=224
+summary.ExitedSubtotal.Hour=59
+summary.ExitedSubtotal.Today=166
+summary.ExitedSubtotal.Total=166
+summary.ExitedSubtotal.TotalInTimeSection=146
+summary.InsideSubtotal.Total=0
+summary.RuleName=NumberStat
+summary.UTC=1741870550
+
+2025-03-13 06:51:42 - Response received. HTTP Code: 200, Length: 403
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:51:42 - Response content: summary.Channel=0
+summary.EnteredSubtotal.Hour=112
+summary.EnteredSubtotal.Today=354
+summary.EnteredSubtotal.Total=366
+summary.EnteredSubtotal.TotalInTimeSection=354
+summary.ExitedSubtotal.Hour=83
+summary.ExitedSubtotal.Today=272
+summary.ExitedSubtotal.Total=285
+summary.ExitedSubtotal.TotalInTimeSection=272
+summary.InsideSubtotal.Total=0
+summary.RuleName=NumberStat
+summary.UTC=1741870551
+
+2025-03-13 06:51:42 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:51:42 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:51:42 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Empty reply from server
+2025-03-13 06:51:42 - Response received. HTTP Code: 200, Length: 24
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13+00:00:00&condition.EndTime=2025-03-13+23:59:59&condition.Granularity=Hour
+2025-03-13 06:51:42 - Response content: token=7
+totalCount=23
+
+2025-03-13 06:51:42 - Request: /thonburi/api_proxy.php?action=doFind&camera=1&channel=1&token=7&beginNumber=0&count=23
+2025-03-13 06:51:42 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=doFind&channel=1&token=7&beginNumber=0&count=23
+2025-03-13 06:51:43 - Response received. HTTP Code: 200, Length: 4171
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=doFind&channel=1&token=7&beginNumber=0&count=23
+2025-03-13 06:51:43 - Response content: found=23
+info[0].Channel=0
+info[0].EndTime=2025-03-13 00:59:59
+info[0].EnteredSubtotal=0
+info[0].ExitedSubtotal=0
+info[0].RuleName=NumberStat
+info[0].StartTime=2025-03-13 00:00:00
+info[1].Channel=0
+info[1].EndTime=2025-03-13 01:59:59
+info[1].EnteredSubtotal=0
+info[1].ExitedSubtotal=0
+info[1].RuleName=NumberStat
+info[1].StartTime=2025-03-13 01:00:00
+info[2].Channel=0
+info[2].EndTime=2025-03-13 02:59:59
+info[2].EnteredSubtotal=0
+info[2].ExitedSubtotal=0
+info[2].RuleName=NumberStat... [truncated]
+2025-03-13 06:51:44 - Request: /thonburi/api_proxy.php?action=stopFind&camera=1&channel=1&token=7
+2025-03-13 06:51:44 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=stopFind&token=7&channel=1
+2025-03-13 06:51:44 - Response received. HTTP Code: 200, Length: 4
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=stopFind&token=7&channel=1
+2025-03-13 06:51:44 - Response content: OK
+
+2025-03-13 06:52:01 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:52:01 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:52:01 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:52:01 - Response received. HTTP Code: 200, Length: 403
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:52:01 - Response content: summary.Channel=0
+summary.EnteredSubtotal.Hour=114
+summary.EnteredSubtotal.Today=244
+summary.EnteredSubtotal.Total=244
+summary.EnteredSubtotal.TotalInTimeSection=224
+summary.ExitedSubtotal.Hour=60
+summary.ExitedSubtotal.Today=167
+summary.ExitedSubtotal.Total=167
+summary.ExitedSubtotal.TotalInTimeSection=147
+summary.InsideSubtotal.Total=0
+summary.RuleName=NumberStat
+summary.UTC=1741870570
+
+2025-03-13 06:52:01 - Response received. HTTP Code: 200, Length: 403
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:52:01 - Response content: summary.Channel=0
+summary.EnteredSubtotal.Hour=112
+summary.EnteredSubtotal.Today=354
+summary.EnteredSubtotal.Total=366
+summary.EnteredSubtotal.TotalInTimeSection=354
+summary.ExitedSubtotal.Hour=83
+summary.ExitedSubtotal.Today=272
+summary.ExitedSubtotal.Total=285
+summary.ExitedSubtotal.TotalInTimeSection=272
+summary.InsideSubtotal.Total=0
+summary.RuleName=NumberStat
+summary.UTC=1741870570
+
+2025-03-13 06:52:01 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:52:01 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:52:01 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:52:01 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:52:01 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Empty reply from server
+2025-03-13 06:52:02 - Response received. HTTP Code: 200, Length: 24
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13+00:00:00&condition.EndTime=2025-03-13+23:59:59&condition.Granularity=Hour
+2025-03-13 06:52:02 - Response content: token=8
+totalCount=23
+
+2025-03-13 06:52:02 - Request: /thonburi/api_proxy.php?action=doFind&camera=1&channel=1&token=8&beginNumber=0&count=23
+2025-03-13 06:52:02 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=doFind&channel=1&token=8&beginNumber=0&count=23
+2025-03-13 06:52:02 - Response received. HTTP Code: 200, Length: 4171
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=doFind&channel=1&token=8&beginNumber=0&count=23
+2025-03-13 06:52:02 - Response content: found=23
+info[0].Channel=0
+info[0].EndTime=2025-03-13 00:59:59
+info[0].EnteredSubtotal=0
+info[0].ExitedSubtotal=0
+info[0].RuleName=NumberStat
+info[0].StartTime=2025-03-13 00:00:00
+info[1].Channel=0
+info[1].EndTime=2025-03-13 01:59:59
+info[1].EnteredSubtotal=0
+info[1].ExitedSubtotal=0
+info[1].RuleName=NumberStat
+info[1].StartTime=2025-03-13 01:00:00
+info[2].Channel=0
+info[2].EndTime=2025-03-13 02:59:59
+info[2].EnteredSubtotal=0
+info[2].ExitedSubtotal=0
+info[2].RuleName=NumberStat... [truncated]
+2025-03-13 06:52:02 - Request: /thonburi/api_proxy.php?action=stopFind&camera=1&channel=1&token=8
+2025-03-13 06:52:02 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=stopFind&token=8&channel=1
+2025-03-13 06:52:03 - Response received. HTTP Code: 200, Length: 4
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=stopFind&token=8&channel=1
+2025-03-13 06:52:03 - Response content: OK
+
+2025-03-13 06:52:18 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:52:18 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:52:18 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:52:18 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:52:18 - Response received. HTTP Code: 200, Length: 403
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:52:18 - Response content: summary.Channel=0
+summary.EnteredSubtotal.Hour=114
+summary.EnteredSubtotal.Today=244
+summary.EnteredSubtotal.Total=244
+summary.EnteredSubtotal.TotalInTimeSection=224
+summary.ExitedSubtotal.Hour=60
+summary.ExitedSubtotal.Today=167
+summary.ExitedSubtotal.Total=167
+summary.ExitedSubtotal.TotalInTimeSection=147
+summary.InsideSubtotal.Total=0
+summary.RuleName=NumberStat
+summary.UTC=1741870587
+
+2025-03-13 06:52:19 - Response received. HTTP Code: 200, Length: 403
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:52:19 - Response content: summary.Channel=0
+summary.EnteredSubtotal.Hour=112
+summary.EnteredSubtotal.Today=354
+summary.EnteredSubtotal.Total=366
+summary.EnteredSubtotal.TotalInTimeSection=354
+summary.ExitedSubtotal.Hour=83
+summary.ExitedSubtotal.Today=272
+summary.ExitedSubtotal.Total=285
+summary.ExitedSubtotal.TotalInTimeSection=272
+summary.InsideSubtotal.Total=0
+summary.RuleName=NumberStat
+summary.UTC=1741870588
+
+2025-03-13 06:52:19 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:52:19 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:52:19 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:52:19 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:52:19 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Empty reply from server
+2025-03-13 06:52:19 - Response received. HTTP Code: 200, Length: 24
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13+00:00:00&condition.EndTime=2025-03-13+23:59:59&condition.Granularity=Hour
+2025-03-13 06:52:19 - Response content: token=9
+totalCount=23
+
+2025-03-13 06:52:19 - Request: /thonburi/api_proxy.php?action=doFind&camera=1&channel=1&token=9&beginNumber=0&count=23
+2025-03-13 06:52:19 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=doFind&channel=1&token=9&beginNumber=0&count=23
+2025-03-13 06:52:20 - Response received. HTTP Code: 200, Length: 4171
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=doFind&channel=1&token=9&beginNumber=0&count=23
+2025-03-13 06:52:20 - Response content: found=23
+info[0].Channel=0
+info[0].EndTime=2025-03-13 00:59:59
+info[0].EnteredSubtotal=0
+info[0].ExitedSubtotal=0
+info[0].RuleName=NumberStat
+info[0].StartTime=2025-03-13 00:00:00
+info[1].Channel=0
+info[1].EndTime=2025-03-13 01:59:59
+info[1].EnteredSubtotal=0
+info[1].ExitedSubtotal=0
+info[1].RuleName=NumberStat
+info[1].StartTime=2025-03-13 01:00:00
+info[2].Channel=0
+info[2].EndTime=2025-03-13 02:59:59
+info[2].EnteredSubtotal=0
+info[2].ExitedSubtotal=0
+info[2].RuleName=NumberStat... [truncated]
+2025-03-13 06:52:20 - Request: /thonburi/api_proxy.php?action=stopFind&camera=1&channel=1&token=9
+2025-03-13 06:52:20 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=stopFind&token=9&channel=1
+2025-03-13 06:52:20 - Response received. HTTP Code: 200, Length: 4
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=stopFind&token=9&channel=1
+2025-03-13 06:52:20 - Response content: OK
+
+2025-03-13 06:52:43 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:52:43 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:52:43 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:52:43 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:52:44 - Response received. HTTP Code: 200, Length: 403
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:52:44 - Response content: summary.Channel=0
+summary.EnteredSubtotal.Hour=114
+summary.EnteredSubtotal.Today=244
+summary.EnteredSubtotal.Total=244
+summary.EnteredSubtotal.TotalInTimeSection=224
+summary.ExitedSubtotal.Hour=60
+summary.ExitedSubtotal.Today=167
+summary.ExitedSubtotal.Total=167
+summary.ExitedSubtotal.TotalInTimeSection=147
+summary.InsideSubtotal.Total=0
+summary.RuleName=NumberStat
+summary.UTC=1741870612
+
+2025-03-13 06:52:44 - Response received. HTTP Code: 200, Length: 403
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:52:44 - Response content: summary.Channel=0
+summary.EnteredSubtotal.Hour=112
+summary.EnteredSubtotal.Today=354
+summary.EnteredSubtotal.Total=366
+summary.EnteredSubtotal.TotalInTimeSection=354
+summary.ExitedSubtotal.Hour=83
+summary.ExitedSubtotal.Today=272
+summary.ExitedSubtotal.Total=285
+summary.ExitedSubtotal.TotalInTimeSection=272
+summary.InsideSubtotal.Total=0
+summary.RuleName=NumberStat
+summary.UTC=1741870613
+
+2025-03-13 06:52:45 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:52:45 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:52:45 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:52:45 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:52:45 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Empty reply from server
+2025-03-13 06:52:45 - Response received. HTTP Code: 200, Length: 25
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13+00:00:00&condition.EndTime=2025-03-13+23:59:59&condition.Granularity=Hour
+2025-03-13 06:52:45 - Response content: token=10
+totalCount=23
+
+2025-03-13 06:52:45 - Request: /thonburi/api_proxy.php?action=doFind&camera=1&channel=1&token=10&beginNumber=0&count=23
+2025-03-13 06:52:45 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=doFind&channel=1&token=10&beginNumber=0&count=23
+2025-03-13 06:52:45 - Response received. HTTP Code: 200, Length: 4171
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=doFind&channel=1&token=10&beginNumber=0&count=23
+2025-03-13 06:52:45 - Response content: found=23
+info[0].Channel=0
+info[0].EndTime=2025-03-13 00:59:59
+info[0].EnteredSubtotal=0
+info[0].ExitedSubtotal=0
+info[0].RuleName=NumberStat
+info[0].StartTime=2025-03-13 00:00:00
+info[1].Channel=0
+info[1].EndTime=2025-03-13 01:59:59
+info[1].EnteredSubtotal=0
+info[1].ExitedSubtotal=0
+info[1].RuleName=NumberStat
+info[1].StartTime=2025-03-13 01:00:00
+info[2].Channel=0
+info[2].EndTime=2025-03-13 02:59:59
+info[2].EnteredSubtotal=0
+info[2].ExitedSubtotal=0
+info[2].RuleName=NumberStat... [truncated]
+2025-03-13 06:52:45 - Request: /thonburi/api_proxy.php?action=stopFind&camera=1&channel=1&token=10
+2025-03-13 06:52:45 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=stopFind&token=10&channel=1
+2025-03-13 06:52:46 - Response received. HTTP Code: 200, Length: 4
+Effective URL: https://192.168.1.14:443/cgi-bin/videoStatServer.cgi?action=stopFind&token=10&channel=1
+2025-03-13 06:52:46 - Response content: OK
+
