@@ -20,15 +20,8 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 $camera = isset($_GET['camera']) ? $_GET['camera'] : '';
 $channel = isset($_GET['channel']) ? $_GET['channel'] : '1';
 
-// ตรวจสอบว่าการกระทำ 'ping' ไม่จำเป็นต้องมีพารามิเตอร์กล้อง
-if ($action === 'ping') {
-    if (empty($camera)) {
-        header('Content-Type: application/json');
-        echo json_encode(['error' => 'Missing camera parameter']);
-        exit;
-    }
-} else if (empty($action) || empty($camera)) {
-    // สำหรับการกระทำอื่นๆ ทั้งการกระทำและกล้องเป็นสิ่งจำเป็น
+// ตรวจสอบว่าจำเป็นต้องมีพารามิเตอร์
+if (empty($action) || empty($camera)) {
     header('Content-Type: application/json');
     echo json_encode(['error' => 'Missing required parameters']);
     exit;
@@ -48,9 +41,9 @@ if (!isset($camera_ips[$camera])) {
 
 $camera_ip = $camera_ips[$camera];
 
-// กำหนดข้อมูลการยืนยันตัวตน (แก้ไขตามข้อมูลจริงของกล้อง)
+// กำหนดข้อมูลการยืนยันตัวตน
 $username = 'admin';
-$password = 'P4ssw0rd'; // แก้ไขรหัสผ่านตามที่ตั้งค่าจริงในกล้อง
+$password = 'P4ssw0rd';
 
 // สร้าง URL ตามการกระทำ
 $url = '';
@@ -61,10 +54,6 @@ $beginNumber = isset($_GET['beginNumber']) ? $_GET['beginNumber'] : '';
 $count = isset($_GET['count']) ? $_GET['count'] : '';
 
 switch ($action) {
-    case 'ping':
-        // ใช้ API ที่เรียบง่ายเพื่อตรวจสอบว่ากล้องออนไลน์หรือไม่
-        $url = "http://$camera_ip/cgi-bin/global.cgi?action=getCurrentTime";
-        break;
     case 'getSummary':
         $url = "http://$camera_ip/cgi-bin/videoStatServer.cgi?action=getSummary&channel=$channel";
         break;
@@ -92,13 +81,8 @@ $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
-curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY); // ลองใช้ CURLAUTH_ANY เพื่อให้ cURL เลือกวิธีการยืนยันตัวตนที่เหมาะสม
-curl_setopt($ch, CURLOPT_FAILONERROR, false); // ไม่ล้มเหลวในข้อผิดพลาด HTTP
-curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1); // ใช้ HTTP 1.1
-
-// ตั้งค่าการหมดเวลา
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5); // เวลาหมดในการเชื่อมต่อ (วินาที)
-curl_setopt($ch, CURLOPT_TIMEOUT, 10); // เวลาหมดสำหรับการดำเนินการทั้งหมด (วินาที)
+curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 
 // ตั้งค่าเพิ่มเติมเพื่อจัดการกับการเปลี่ยนเส้นทาง
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // ติดตามการเปลี่ยนเส้นทาง
@@ -127,54 +111,22 @@ if ($error) {
 }
 file_put_contents($logFile, $logMessage, FILE_APPEND);
 
-// ถ้าเป็นการ ping และไม่มีการตอบสนอง ให้ส่งสถานะ offline
-if ($action === 'ping') {
-    header('Content-Type: application/json');
-    if ($httpCode === 200 && $response) {
-        echo json_encode(['status' => 'online']);
-    } else {
-        echo json_encode(['status' => 'offline']);
-    }
-    exit;
-}
-
-// ถ้ามีข้อผิดพลาดในการเชื่อมต่อ ให้แสดงข้อมูลจำลอง
-if ($httpCode !== 200 || $error) {
-    if ($action === 'getSummary') {
-        // สร้างข้อมูลสรุปจำลอง
-        header('Content-Type: text/plain');
-        echo "summary.Channel=0\n";
-        echo "summary.RuleName=NumberStat\n";
-        echo "summary.EnteredSubtotal.Today=0\n";
-        echo "summary.EnteredSubtotal.Total=0\n";
-        echo "summary.EnteredSubtotal.TotalInTimeSection=0\n";
-        echo "summary.ExitedSubtotal.Today=0\n";
-        echo "summary.ExitedSubtotal.Total=0\n";
-        echo "summary.ExitedSubtotal.TotalInTimeSection=0\n";
-        exit;
-    } else if ($action === 'startFind') {
-        // สร้างโทเค็นจำลองและการนับทั้งหมด = 0
-        header('Content-Type: text/plain');
-        echo "token=mock_token\ntotalCount=0\n";
-        exit;
-    } else {
-        // ส่งค่าข้อผิดพลาดสำหรับการกระทำอื่นๆ
-        header('Content-Type: application/json');
-        echo json_encode([
-            'error' => $error ? $error : "HTTP Error: $httpCode", 
-            'details' => "Connection to camera $camera ($camera_ip) failed",
-            'url' => $url,
-            'effective_url' => $effectiveUrl
-        ]);
-        exit;
-    }
-}
-
 // ตรวจสอบการเปลี่ยนเส้นทางไปยังหน้าล็อกอิน
 if (strpos($effectiveUrl, 'login') !== false) {
     header('Content-Type: application/json');
     echo json_encode([
         'error' => 'Authentication failed - redirected to login page',
+        'effective_url' => $effectiveUrl
+    ]);
+    exit;
+}
+
+if ($httpCode !== 200) {
+    header('Content-Type: application/json');
+    echo json_encode([
+        'error' => "HTTP Error: $httpCode", 
+        'details' => $error,
+        'url' => $url,
         'effective_url' => $effectiveUrl
     ]);
     exit;

@@ -41,3 +41,358 @@ Error: Failed to connect to 192.168.1.14 port 80: Timed out
 2025-03-13 06:02:19 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
 2025-03-13 06:02:19 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
 2025-03-13 06:02:19 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:02:40 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+5-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:02:40 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:02:40 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:02:40 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:02:40 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:02:40 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:02:40 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:02:40 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:03:01 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:03:01 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:03:01 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:03:01 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:03:01 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:03:01 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:03:01 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:03:01 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:03:02 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:03:02 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:03:02 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:03:02 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:03:23 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:03:23 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:03:23 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:03:23 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:03:23 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:03:23 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:03:38 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:03:38 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:03:38 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:03:38 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:03:45 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:03:59 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:03:59 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:03:59 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:03:59 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:03:59 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:04:02 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:04:02 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:04:02 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:04:21 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:04:23 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:04:23 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:04:23 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:04:23 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:04:32 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:04:32 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:04:32 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:04:45 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:04:45 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:04:53 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:04:53 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:04:53 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:04:53 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:05:02 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:05:02 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:05:02 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:05:02 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:05:15 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:05:23 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:05:23 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:05:23 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:05:23 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:05:23 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:05:23 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:05:32 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:05:32 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:05:32 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:05:32 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:05:45 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:05:53 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:05:53 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:05:53 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:05:53 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:05:53 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:05:53 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:06:15 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:06:15 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:06:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:06:44 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:06:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:06:44 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:07:05 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:07:05 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:07:05 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:07:05 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:07:27 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:07:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:07:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:07:44 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:07:44 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:08:05 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:08:05 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:08:05 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:08:05 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:08:05 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:08:27 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:08:27 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:08:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:08:44 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:08:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:08:44 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:09:05 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:09:05 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:09:05 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:09:05 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:09:05 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:09:05 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:09:27 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:09:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:09:44 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:09:44 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:10:05 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:10:05 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:10:05 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:10:05 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:10:05 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:10:27 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:10:27 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:10:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:10:44 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:10:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:10:44 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:11:05 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:11:05 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:11:06 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:11:06 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:11:06 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:11:06 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:11:27 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:11:27 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:11:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:11:44 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:11:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:11:44 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:12:05 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:12:05 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:12:05 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:12:05 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:12:05 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:12:27 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:12:27 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:12:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:12:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:12:44 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:12:44 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:13:05 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:13:05 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:13:05 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:13:05 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:13:05 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:13:05 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:13:27 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:13:27 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:13:27 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:13:27 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:13:32 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:13:32 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:13:32 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:13:48 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:13:53 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:13:53 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:13:53 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:13:53 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:13:53 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:14:02 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:14:02 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:14:02 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:14:15 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:14:23 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.14 port 80: Timed out
+2025-03-13 06:14:23 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Failed to connect to 192.168.1.11 port 80: Timed out
+2025-03-13 06:14:23 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:14:23 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:14:23 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:14:28 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Connection timed out after 5007 milliseconds
+2025-03-13 06:14:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:14:44 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:14:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:14:44 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:14:49 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Connection timed out after 5001 milliseconds
+2025-03-13 06:14:49 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Connection timed out after 5014 milliseconds
+2025-03-13 06:14:49 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:14:49 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:14:49 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:14:54 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Connection timed out after 5015 milliseconds
+2025-03-13 06:15:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:15:44 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:15:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:15:44 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:15:49 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Connection timed out after 5010 milliseconds
+2025-03-13 06:15:49 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:15:49 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:15:49 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:15:49 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:15:54 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Connection timed out after 5008 milliseconds
+2025-03-13 06:16:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:16:44 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:16:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:16:44 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:16:49 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Connection timed out after 5003 milliseconds
+2025-03-13 06:16:49 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:16:49 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:16:49 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:16:49 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:16:54 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Connection timed out after 5003 milliseconds
+2025-03-13 06:17:44 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:17:44 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:17:44 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:17:49 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Connection timed out after 5001 milliseconds
+2025-03-13 06:17:49 - Request: /thonburi/api_proxy.php?action=startFind&camera=2&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:17:49 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:17:49 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:17:54 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Connection timed out after 5008 milliseconds
+2025-03-13 06:17:54 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Connection timed out after 5008 milliseconds
+2025-03-13 06:18:14 - Request: /thonburi/api_proxy.php?action=getSummary&camera=1&channel=1
+2025-03-13 06:18:14 - Request: /thonburi/api_proxy.php?action=getSummary&camera=2&channel=1
+2025-03-13 06:18:14 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:18:14 - Calling URL: http://192.168.1.11/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+2025-03-13 06:18:17 - Request: /thonburi/api_proxy.php?action=startFind&camera=1&channel=1&startTime=2025-03-13%2000%3A00%3A00&endTime=2025-03-13%2023%3A59%3A59
+2025-03-13 06:18:17 - Calling URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+2025-03-13 06:18:19 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=getSummary&channel=1
+Error: Connection timed out after 5007 milliseconds
+2025-03-13 06:18:22 - Response received. HTTP Code: 0, Length: 0
+Effective URL: http://192.168.1.14/cgi-bin/videoStatServer.cgi?action=startFind&channel=1&condition.StartTime=2025-03-13 00:00:00&condition.EndTime=2025-03-13 23:59:59&condition.Granularity=Hour
+Error: Connection timed out after 5001 milliseconds
