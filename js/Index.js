@@ -113,35 +113,41 @@ function parseResponse(text) {
 
 
 // ฟังก์ชันดึงข้อมูลสรุปจากกล้อง
+// ฟังก์ชันดึงข้อมูลสรุปจากกล้อง
 async function getSummaryData(cameraId, channel) {
   try {
     console.log(`Fetching summary data for camera ${cameraId}`);
-    const response = await fetch(
-      `api_proxy.php?action=getSummary&camera=${cameraId}&channel=${channel}`
-    );
-
+    const response = await fetch(`api_proxy.php?action=getSummary&camera=${cameraId}&channel=${channel}`);
+    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
+    
     const text = await response.text();
     console.log(`Raw response from camera ${cameraId}:`, text);
-
+    
+    // มีข้อมูลหรือไม่
+    if (!text || text.trim() === '') {
+      console.error(`Empty response from camera ${cameraId}`);
+      return {
+        'summary.EnteredSubtotal.Today': '0',
+        'summary.EnteredSubtotal.Total': '0',
+        'summary.ExitedSubtotal.Today': '0',
+        'summary.ExitedSubtotal.Total': '0'
+      };
+    }
+    
     const result = parseResponse(text);
     console.log(`Parsed response from camera ${cameraId}:`, result);
-
+    
     return result;
   } catch (error) {
-    console.error(
-      `Error fetching summary data from camera ${cameraId}:`,
-      error
-    );
-    // คืนค่าข้อมูลเริ่มต้นในกรณีที่เกิดข้อผิดพลาด
+    console.error(`Error fetching summary data from camera ${cameraId}:`, error);
     return {
-      "summary.EnteredSubtotal.Today": "0",
-      "summary.EnteredSubtotal.Total": "0",
-      "summary.ExitedSubtotal.Today": "0",
-      "summary.ExitedSubtotal.Total": "0",
+      'summary.EnteredSubtotal.Today': '0',
+      'summary.EnteredSubtotal.Total': '0',
+      'summary.ExitedSubtotal.Today': '0',
+      'summary.ExitedSubtotal.Total': '0'
     };
   }
 }
