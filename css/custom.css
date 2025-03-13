@@ -2,7 +2,7 @@
  * Custom CSS สำหรับ Dashboard
  */
 
-:root {
+ :root {
   /* สีหลัก */
   --primary: #2563eb;
   --primary-light: #3b82f6;
@@ -12,23 +12,23 @@
   --danger: #ef4444;
   --warning: #f59e0b;
   --info: #0ea5e9;
-
+  
   /* สีสำหรับกล้อง 1 */
   --camera1-in: #0ea5e9;
   --camera1-in-light: #bae6fd;
   --camera1-out: #0369a1;
   --camera1-out-light: #a5f3fc;
-
+  
   /* สีสำหรับกล้อง 2 */
   --camera2-in: #8b5cf6;
   --camera2-in-light: #ddd6fe;
   --camera2-out: #5b21b6;
   --camera2-out-light: #c4b5fd;
-
+  
   /* สีสำหรับยอดเข้า-ออกรวม */
   --total-in: #10b981;
   --total-out: #ef4444;
-
+  
   /* สีอื่นๆ */
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
@@ -39,7 +39,7 @@
   --gray-700: #374151;
   --gray-800: #1f2937;
   --gray-900: #111827;
-
+  
   /* ค่าอื่นๆ */
   --border-radius: 12px;
   --transition-speed: 0.3s;
@@ -50,7 +50,7 @@
 
 /* =================== พื้นฐานทั่วไป =================== */
 body {
-  font-family: "Prompt", "Kanit", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Prompt', 'Kanit', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: #f8fafc;
   color: var(--gray-700);
   min-height: 100vh;
@@ -197,11 +197,7 @@ label {
 /* =================== Summary Card =================== */
 .summary-card {
   height: 100%;
-  background: linear-gradient(
-    120deg,
-    var(--secondary) 0%,
-    var(--gray-700) 100%
-  );
+  background: linear-gradient(120deg, var(--secondary) 0%, var(--gray-700) 100%);
 }
 
 .summary-card .card-header {
@@ -456,8 +452,7 @@ label {
   }
 }
 
-.counter-value,
-.stat-value {
+.counter-value, .stat-value {
   animation: numberChange 0.5s ease;
 }
 
@@ -477,88 +472,28 @@ label {
   .summary-counters {
     flex-direction: column;
   }
-
+  
   .counter-item.in-counter {
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
-
+  
   .counter-icon {
     width: 40px;
     height: 40px;
     font-size: 1rem;
   }
-
+  
   .stat-icon {
     width: 70px;
     font-size: 1.5rem;
   }
-
-  .stat-value,
-  .counter-value {
+  
+  .stat-value, .counter-value {
     font-size: 1.5rem;
   }
-
+  
   .chart-container {
     min-height: 250px;
   }
-}
-
-/* ปรับแต่งกราฟ */
-.chart-card {
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.chart-card:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.chart-container {
-  padding: 0.5rem;
-}
-
-.apexcharts-tooltip {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border: none !important;
-}
-
-.apexcharts-tooltip-title {
-  font-weight: 600;
-  background: #f8f9fa !important;
-  border-bottom: 1px solid #eee !important;
-}
-
-.apexcharts-xaxistooltip {
-  background: #fff !important;
-  border: 1px solid #eee !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.apexcharts-bar-area:hover {
-  opacity: 0.8;
-}
-
-.apexcharts-gridline {
-  stroke-dasharray: 3;
-  stroke-width: 1;
-}
-
-/* ปรับแต่งส่วนแสดงเวลาอัพเดต */
-#last-updated-time {
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.last-updated {
-  display: flex;
-  align-items: center;
-  font-size: 0.85rem;
-}
-
-.last-updated:before {
-  content: "\f017";
-  font-family: "Font Awesome 5 Free";
-  margin-right: 5px;
-  opacity: 0.7;
 }

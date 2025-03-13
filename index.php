@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="th">
+
 <head>
   <meta charset="utf-8" />
   <title>Thonburi | Dashboard</title>
@@ -13,14 +14,15 @@
   <!-- CSS: Bootstrap, Bootstrap Icons, AdminLTE, custom -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <!-- เพิ่ม Font Awesome สำหรับไอคอนเพิ่มเติม -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="css/adminlte.css" />
   <link rel="stylesheet" href="css/custom.css" />
 
   <!-- ApexCharts -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css" />
-
-  <!-- Google Fonts - Prompt -->
+  
+  <!-- เพิ่ม Google Fonts - Prompt เป็นฟอนต์ไทยที่อ่านง่ายและทันสมัย -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap">
 </head>
 
@@ -38,9 +40,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-6">
-              <h3 class="mb-0 dash-title">
-                <i class="bi bi-speedometer2 me-2"></i>Dashboard
-              </h3>
+              <h3 class="mb-0 dash-title"><i class="bi bi-speedometer2 me-2"></i>Dashboard</h3>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-end">
@@ -61,18 +61,47 @@
         <div class="container-fluid">
           <!-- ส่วนของตัวกรองวันที่และเวลา -->
           <div class="row mb-4">
-
+            <div class="col-md-7">
+              <div class="card filter-card">
+                <div class="card-header d-flex align-items-center">
+                  <div class="card-icon-bg me-2">
+                    <i class="bi bi-calendar-range"></i>
+                  </div>
+                  <h3 class="card-title">ค้นหาข้อมูลตามวันที่และเวลา</h3>
+                  <div class="ms-auto">
+                    <button type="button" class="btn btn-sm refresh-btn" id="refreshData">
+                      <i class="bi bi-arrow-repeat"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <form id="dateFilterForm">
+                    <div class="row align-items-end">
+                      <div class="col-md-4 mb-3 mb-md-0">
+                        <label><i class="bi bi-calendar3 me-1"></i>วันที่เริ่มต้น</label>
+                        <input type="date" id="startDate" class="form-control custom-input" value="<?php echo date('Y-m-d'); ?>">
+                      </div>
+                      <div class="col-md-4 mb-3 mb-md-0">
+                        <label><i class="bi bi-calendar3-week me-1"></i>วันที่สิ้นสุด</label>
+                        <input type="date" id="endDate" class="form-control custom-input" value="<?php echo date('Y-m-d'); ?>">
+                      </div>
+                      <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary btn-search w-100">
+                          <i class="bi bi-search me-2"></i>ค้นหา
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            
             <!-- สรุปยอดรวม -->
             <div class="col-md-5">
               <div class="card summary-card">
                 <div class="card-header">
-                  <h3 class="card-title">
-                    <i class="bi bi-people-fill me-2"></i>ยอดรวมทั้งหมด
-                  </h3>
-                  &nbsp;
-                  <span class="last-updated" id="last-updated-display">
-                    อัพเดตล่าสุด: <span id="last-updated-time">-</span>
-                  </span>
+                  <h3 class="card-title"><i class="bi bi-people-fill me-2"></i>ยอดรวมทั้งหมด</h3>&nbsp; 
+                  <span class="last-updated" id="last-updated-display">อัพเดตล่าสุด: <span id="last-updated-time">-</span></span>
                 </div>
                 <div class="card-body p-0">
                   <div class="summary-counters">
@@ -117,7 +146,7 @@
                 </div>
               </div>
             </div>
-
+            
             <!-- Card 2: จำนวนคนออก กล้องตัวที่ 1 -->
             <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
               <div class="stat-card camera1-out">
@@ -133,7 +162,7 @@
                 </div>
               </div>
             </div>
-
+            
             <!-- Card 3: จำนวนคนเข้า กล้องตัวที่ 2 -->
             <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
               <div class="stat-card camera2-in">
@@ -149,7 +178,7 @@
                 </div>
               </div>
             </div>
-
+            
             <!-- Card 4: จำนวนคนออก กล้องตัวที่ 2 -->
             <div class="col-md-3 col-sm-6">
               <div class="stat-card camera2-out">
@@ -177,18 +206,18 @@
                     <i class="bi bi-bar-chart-fill"></i>
                   </div>
                   <h3 class="card-title">กล้อง 1: จำนวนคนเข้ารายชั่วโมง</h3>
-                  <!-- <div class="ms-auto">
+                  <div class="ms-auto">
                     <div class="chart-period">
                       <span class="period-label">08:00 - 21:00</span>
                     </div>
-                  </div> -->
+                  </div>
                 </div>
                 <div class="card-body">
                   <div id="chartCamera1" class="chart-container"></div>
                 </div>
               </div>
             </div>
-
+            
             <!-- กราฟ 2: จำนวนคนเข้า กล้องตัวที่ 2 รายชั่วโมง -->
             <div class="col-md-6 mb-4">
               <div class="card chart-card">
@@ -197,11 +226,11 @@
                     <i class="bi bi-bar-chart-fill"></i>
                   </div>
                   <h3 class="card-title">กล้อง 2: จำนวนคนเข้ารายชั่วโมง</h3>
-                  <!-- <div class="ms-auto">
+                  <div class="ms-auto">
                     <div class="chart-period">
                       <span class="period-label">08:00 - 21:00</span>
                     </div>
-                  </div> -->
+                  </div>
                 </div>
                 <div class="card-body">
                   <div id="chartCamera2" class="chart-container"></div>
@@ -218,7 +247,7 @@
     include 'layout/footer.php';
     ?>
 
-    <!-- Loading Overlay -->
+    <!-- Loading Overlay - ปรับปรุงใหม่ให้สวยงามขึ้น -->
     <div id="loading-overlay" style="display: none;">
       <div class="spinner-wrapper">
         <div class="spinner-grow text-primary" role="status" style="width: 3rem; height: 3rem;">
@@ -227,13 +256,13 @@
         <div class="loading-text">กำลังโหลดข้อมูล...</div>
       </div>
     </div>
-  </div> <!-- /app-wrapper -->
 
-  <!-- JS: Bootstrap, ApexCharts, AdminLTE, index.js -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"></script>
-  <script src="js/adminlte.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-  <script src="js/index.js"></script>
+    <!-- JS: Bootstrap, ApexCharts, AdminLTE, index.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"></script>
+    <script src="js/adminlte.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="js/index.js"></script>
 </body>
+
 </html>
