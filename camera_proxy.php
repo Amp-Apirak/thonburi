@@ -20,7 +20,7 @@ if (!isset($cameras[$cameraId])) {
 $camera = $cameras[$cameraId];
 
 // สร้าง URL เรียกข้อมูลกล้อง
-$url = \"http://{$camera['ip']}/cgi-bin/videoStatServer.cgi?action={$action}\";
+$url = "http://{$camera['ip']}/cgi-bin/videoStatServer.cgi?action={$action}\";
 
 if ($action === 'startFind') {
     $startTime = urlencode($_GET['startTime']);
