@@ -14,7 +14,11 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 
-// ดักจับ Error จาก cURL
+// เพิ่มส่วนนี้สำคัญมาก
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+]);
+
 $response = curl_exec($ch);
 if (curl_errno($ch)) {
     echo 'Curl error: ' . curl_error($ch);
