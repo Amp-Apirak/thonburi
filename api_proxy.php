@@ -1,8 +1,15 @@
 <?php
 // อนุญาต CORS จาก localhost
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Methods: GET, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+
+// จัดการคำขอ OPTIONS (preflight)
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    // ส่งส่วนหัวที่จำเป็นและจบการทำงาน
+    http_response_code(200);
+    exit;
+}
 
 // บันทึกข้อมูลการร้องขอเพื่อการแก้ไขปัญหา
 $logFile = 'api_proxy_log.txt';
@@ -70,29 +77,46 @@ switch ($action) {
 $logMessage = date('Y-m-d H:i:s') . " - Calling URL: $url\n";
 file_put_contents($logFile, $logMessage, FILE_APPEND);
 
-// ตั้งค่า HTTP context ด้วยข้อมูลการยืนยันตัวตน
-$context = stream_context_create([
-    'http' => [
-        'header' => "Authorization: Basic " . base64_encode("$username:$password")
-    ]
-]);
+// ใช้ cURL แทน file_get_contents
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-// ทำการร้องขอไปยังกล้อง
-$response = @file_get_contents($url, false, $context);
+// ไม่ตรวจสอบใบรับรองความปลอดภัย SSL (อาจไม่จำเป็นสำหรับกล้อง IP ภายในเครือข่าย)
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
-// ตรวจสอบข้อผิดพลาด
-if ($response === FALSE) {
-    $error = error_get_last();
-    $errorMessage = date('Y-m-d H:i:s') . " - Error: " . (isset($error['message']) ? $error['message'] : 'Unknown error') . "\n";
-    file_put_contents($logFile, $errorMessage, FILE_APPEND);
-    
+// เพิ่ม Basic Auth header โดยตรง
+$auth_header = "Authorization: Basic " . base64_encode("$username:$password");
+curl_setopt($ch, CURLOPT_HTTPHEADER, array($auth_header));
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$error = curl_error($ch);
+$info = curl_getinfo($ch);
+curl_close($ch);
+
+// บันทึกข้อมูลการตอบกลับ
+$responseLog = date('Y-m-d H:i:s') . " - Response received. HTTP Code: $httpCode, Length: " . strlen($response) . "\n";
+if ($error) {
+    $responseLog .= "Error: $error\n";
+}
+$responseLog .= "Info: " . json_encode($info) . "\n";
+file_put_contents($logFile, $responseLog, FILE_APPEND);
+
+if ($httpCode !== 200) {
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'Failed to connect to camera', 'details' => $error]);
+    echo json_encode([
+        'error' => "HTTP Error: $httpCode", 
+        'details' => $error,
+        'url' => $url,
+        'info' => $info
+    ]);
 } else {
-    // บันทึกการตอบสนอง
-    $responseLog = date('Y-m-d H:i:s') . " - Response received. Length: " . strlen($response) . "\n";
-    file_put_contents($logFile, $responseLog, FILE_APPEND);
-    
     // ส่งคืนการตอบสนองโดยตรง
     header('Content-Type: text/plain');
     echo $response;
