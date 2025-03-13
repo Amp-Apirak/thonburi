@@ -32,11 +32,12 @@ if ($action === 'startFind') {
     $url .= "&token={$token}&beginNumber=0&count=14";
 }
 
-// เรียกกล้อง Dahua ด้วย cURL
+// เรียกกล้อง Dahua ด้วย cURL พร้อมกำหนดให้ redirect ตาม
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_USERPWD, $camera['user'].":".$camera['pass']);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);  // <== เพิ่มบรรทัดนี้เพื่อให้ cURL redirect ตาม URL ที่กล้องส่งมา
 $response = curl_exec($ch);
 curl_close($ch);
 
