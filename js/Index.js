@@ -1,13 +1,6 @@
 // กำหนดตัวแปรสำหรับเก็บอินสแตนซ์ของกราฟและการตั้งค่า
 let chartCamera1, chartCamera2;
 let fetchInterval;
-let lastDataTimestamp = new Date(); // เพิ่มการติดตามเวลาที่อัปเดตข้อมูลล่าสุด
-
-// ตัวแปรควบคุมสถานะการเชื่อมต่อ
-const cameraStatus = {
-  '1': false,
-  '2': false
-};
 
 // ฟังก์ชันแสดง/ซ่อน Loading Overlay พร้อม Animation
 function showLoading() {
@@ -44,8 +37,6 @@ function animateValue(element, value) {
 // ฟังก์ชันอัพเดทเวลาล่าสุดใน Header
 function updateLastUpdatedTime() {
   const now = new Date();
-  lastDataTimestamp = now; // บันทึกเวลาการอัปเดตล่าสุด
-  
   const options = {
     year: "numeric",
     month: "long",
@@ -68,12 +59,6 @@ function updateLastUpdatedTime() {
 
 // คำนวณยอดรวมของคนเข้า-ออก
 function calculateTotals(camera1In, camera1Out, camera2In, camera2Out) {
-  // แปลงค่าให้เป็นตัวเลขและป้องกันค่า NaN
-  camera1In = parseInt(camera1In) || 0;
-  camera1Out = parseInt(camera1Out) || 0;
-  camera2In = parseInt(camera2In) || 0;
-  camera2Out = parseInt(camera2Out) || 0;
-  
   const totalIn = camera1In + camera2In;
   const totalOut = camera1Out + camera2Out;
 
@@ -89,33 +74,7 @@ function calculateTotals(camera1In, camera1Out, camera2In, camera2Out) {
   return { totalIn, totalOut };
 }
 
-// ฟังก์ชันตรวจสอบการเชื่อมต่อกับกล้อง
-async function checkCameraStatus(cameraId) {
-  try {
-    console.log(`Checking connection to camera ${cameraId}...`);
-    const response = await fetch(`api_proxy.php?action=ping&camera=${cameraId}`);
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    const isOnline = data.status === 'online';
-    
-    // อัปเดตสถานะการเชื่อมต่อ
-    cameraStatus[cameraId] = isOnline;
-    updateCameraStatus(cameraId, isOnline);
-    
-    console.log(`Camera ${cameraId} is ${isOnline ? 'online' : 'offline'}`);
-    return isOnline;
-  } catch (error) {
-    console.error(`Error checking camera ${cameraId} status:`, error);
-    cameraStatus[cameraId] = false;
-    updateCameraStatus(cameraId, false);
-    return false;
-  }
-}
-
+// ฟังก์ชันแปลงข้อความตอบกลับจาก API เป็น object
 // ฟังก์ชันแปลงข้อความตอบกลับจาก API เป็น object
 function parseResponse(text) {
   const result = {};
@@ -124,6 +83,9 @@ function parseResponse(text) {
     console.warn("Empty response received");
     return result;
   }
+
+  // ลองพิมพ์ข้อมูลดิบเพื่อตรวจสอบ
+  console.log("Raw API response:", text);
 
   try {
     // แยกโดยบรรทัด
@@ -138,6 +100,9 @@ function parseResponse(text) {
       }
     });
 
+    // ลองพิมพ์ object ที่แปลงแล้วเพื่อตรวจสอบ
+    console.log("Parsed response object:", result);
+
     return result;
   } catch (error) {
     console.error("Error parsing response:", error);
@@ -146,20 +111,11 @@ function parseResponse(text) {
   }
 }
 
+
+// ฟังก์ชันดึงข้อมูลสรุปจากกล้อง
 // ฟังก์ชันดึงข้อมูลสรุปจากกล้อง
 async function getSummaryData(cameraId, channel) {
   try {
-    // ถ้ากล้องออฟไลน์ ให้ใช้ข้อมูลจำลอง
-    if (!cameraStatus[cameraId]) {
-      console.log(`Camera ${cameraId} is offline, using mock data`);
-      return {
-        'summary.EnteredSubtotal.Today': '0',
-        'summary.EnteredSubtotal.Total': getMockValue(cameraId, 'in'),
-        'summary.ExitedSubtotal.Today': '0',
-        'summary.ExitedSubtotal.Total': getMockValue(cameraId, 'out')
-      };
-    }
-    
     console.log(`Fetching summary data for camera ${cameraId}`);
     const response = await fetch(`api_proxy.php?action=getSummary&camera=${cameraId}&channel=${channel}`);
     
@@ -168,10 +124,17 @@ async function getSummaryData(cameraId, channel) {
     }
     
     const text = await response.text();
+    console.log(`Raw response from camera ${cameraId}:`, text);
     
     // มีข้อมูลหรือไม่
     if (!text || text.trim() === '') {
-      throw new Error(`Empty response from camera ${cameraId}`);
+      console.error(`Empty response from camera ${cameraId}`);
+      return {
+        'summary.EnteredSubtotal.Today': '0',
+        'summary.EnteredSubtotal.Total': '0',
+        'summary.ExitedSubtotal.Today': '0',
+        'summary.ExitedSubtotal.Total': '0'
+      };
     }
     
     const result = parseResponse(text);
@@ -180,43 +143,18 @@ async function getSummaryData(cameraId, channel) {
     return result;
   } catch (error) {
     console.error(`Error fetching summary data from camera ${cameraId}:`, error);
-    // อัปเดตสถานะกล้องเป็นออฟไลน์
-    cameraStatus[cameraId] = false;
-    updateCameraStatus(cameraId, false);
-    
-    // ส่งคืนข้อมูลจำลอง
     return {
       'summary.EnteredSubtotal.Today': '0',
-      'summary.EnteredSubtotal.Total': getMockValue(cameraId, 'in'),
+      'summary.EnteredSubtotal.Total': '0',
       'summary.ExitedSubtotal.Today': '0',
-      'summary.ExitedSubtotal.Total': getMockValue(cameraId, 'out')
+      'summary.ExitedSubtotal.Total': '0'
     };
   }
-}
-
-// ฟังก์ชันสร้างข้อมูลจำลองในกรณีที่กล้องออฟไลน์
-function getMockValue(cameraId, type) {
-  // ค่าคงที่ที่เพิ่มขึ้นเล็กน้อยในแต่ละครั้ง
-  const baseValue = cameraId === '1' ? 
-    (type === 'in' ? 142 : 78) : 
-    (type === 'in' ? 213 : 105);
-  
-  // ใช้เวลาปัจจุบันเพื่อสร้างค่าที่จะเพิ่มขึ้นเล็กน้อยในแต่ละชั่วโมง
-  const hoursPassed = Math.floor((new Date() - new Date().setHours(0,0,0,0)) / (1000 * 60 * 60));
-  
-  // เพิ่มค่าตามเวลาที่ผ่านไป
-  return (baseValue + hoursPassed).toString();
 }
 
 // ฟังก์ชันดึงข้อมูลรายชั่วโมงสำหรับกราฟ
 async function getHourlyData(cameraId, channel, startDate, endDate) {
   try {
-    // ถ้ากล้องออฟไลน์ ให้ใช้ข้อมูลจำลอง
-    if (!cameraStatus[cameraId]) {
-      console.log(`Camera ${cameraId} is offline, using mock hourly data`);
-      return generateMockHourlyData(cameraId);
-    }
-    
     console.log(
       `Fetching hourly data for camera ${cameraId} from ${startDate} to ${endDate}`
     );
@@ -249,7 +187,7 @@ async function getHourlyData(cameraId, channel, startDate, endDate) {
 
     if (!token || totalCount === 0) {
       console.warn(`No data found or invalid token for camera ${cameraId}`);
-      return generateMockHourlyData(cameraId); // คืนค่าเป็นข้อมูลจำลอง
+      return Array(14).fill(0); // คืนค่าเป็นอาร์เรย์ว่าง 14 ชั่วโมง (08:00 - 21:00)
     }
 
     // ดึงข้อมูลตามจำนวนที่มี
@@ -312,46 +250,8 @@ async function getHourlyData(cameraId, channel, startDate, endDate) {
     return hourlyData;
   } catch (error) {
     console.error(`Error fetching hourly data from camera ${cameraId}:`, error);
-    // อัปเดตสถานะกล้องเป็นออฟไลน์
-    cameraStatus[cameraId] = false;
-    updateCameraStatus(cameraId, false);
-    
-    // คืนค่าเป็นข้อมูลจำลองในกรณีที่เกิดข้อผิดพลาด
-    return generateMockHourlyData(cameraId);
+    return Array(14).fill(0); // คืนค่าเป็นอาร์เรย์ว่างในกรณีที่เกิดข้อผิดพลาด
   }
-}
-
-// สร้างข้อมูลรายชั่วโมงจำลอง
-function generateMockHourlyData(cameraId) {
-  // สร้างรูปแบบข้อมูลที่สมจริงโดยขึ้นอยู่กับช่วงเวลาของวัน
-  const hourlyData = Array(14).fill(0);
-  const baseValue = cameraId === '1' ? 8 : 12; // กล้อง 2 มีคนเข้ามากกว่าเล็กน้อย
-  
-  // ช่วงเช้า (08:00 - 10:00)
-  hourlyData[0] = baseValue + Math.floor(Math.random() * 5);
-  hourlyData[1] = baseValue + 3 + Math.floor(Math.random() * 6);
-  hourlyData[2] = baseValue + 6 + Math.floor(Math.random() * 7);
-  
-  // ช่วงกลางวัน (11:00 - 13:00) - พีคช่วงเที่ยง
-  hourlyData[3] = baseValue + 10 + Math.floor(Math.random() * 8);
-  hourlyData[4] = baseValue + 15 + Math.floor(Math.random() * 10); // พีคตอนเที่ยง
-  hourlyData[5] = baseValue + 12 + Math.floor(Math.random() * 8);
-  
-  // ช่วงบ่าย (14:00 - 16:00)
-  hourlyData[6] = baseValue + 8 + Math.floor(Math.random() * 6);
-  hourlyData[7] = baseValue + 7 + Math.floor(Math.random() * 5);
-  hourlyData[8] = baseValue + 6 + Math.floor(Math.random() * 5);
-  
-  // ช่วงเย็น (17:00 - 19:00) - พีคอีกครั้ง
-  hourlyData[9] = baseValue + 9 + Math.floor(Math.random() * 7);
-  hourlyData[10] = baseValue + 14 + Math.floor(Math.random() * 9); // พีคตอนเย็น
-  hourlyData[11] = baseValue + 10 + Math.floor(Math.random() * 7);
-  
-  // ช่วงกลางคืน (20:00 - 21:00)
-  hourlyData[12] = baseValue + 5 + Math.floor(Math.random() * 4);
-  hourlyData[13] = baseValue + 3 + Math.floor(Math.random() * 3);
-  
-  return hourlyData;
 }
 
 // ฟังก์ชันอัพเดทกราฟ
@@ -542,3 +442,182 @@ function updateCharts(camera1Data, camera2Data) {
     chartCamera2.el.style.animation = "fadeIn 0.5s ease";
   }
 }
+
+// ฟังก์ชันแสดงสถานะการเชื่อมต่อของกล้อง
+function updateCameraStatus(cameraId, isOnline) {
+  const statusElements = document.querySelectorAll(
+    `.camera${cameraId}-in .status-indicator, .camera${cameraId}-out .status-indicator`
+  );
+
+  statusElements.forEach((element) => {
+    if (element) {
+      if (isOnline) {
+        element.classList.add("active");
+        element.parentElement.textContent = "ออนไลน์";
+      } else {
+        element.classList.remove("active");
+        element.parentElement.textContent = "ออฟไลน์";
+      }
+    }
+  });
+}
+
+// ฟังก์ชันหลักสำหรับดึงข้อมูลจาก API
+async function fetchData(startDate = null, endDate = null) {
+  showLoading(); // แสดง Loading Overlay
+
+  try {
+    console.log("Starting data fetch");
+
+    // ถ้าไม่มีการระบุวันที่ ให้ใช้ข้อมูลของวันนี้
+    if (!startDate || !endDate) {
+      const today = new Date();
+      startDate = today.toISOString().split("T")[0];
+      endDate = startDate;
+    }
+
+    console.log(`Fetching data for date range: ${startDate} to ${endDate}`);
+
+    // ดึงข้อมูลสรุปจากกล้องทั้ง 2 ตัว
+    const camera1SummaryPromise = getSummaryData("1", 1);
+    const camera2SummaryPromise = getSummaryData("2", 1);
+
+    const [camera1Summary, camera2Summary] = await Promise.all([
+      camera1SummaryPromise,
+      camera2SummaryPromise,
+    ]);
+
+    // แปลงข้อมูลเป็นตัวเลข
+    const camera1In = parseInt(
+      camera1Summary["summary.EnteredSubtotal.Total"] || "0"
+    );
+    const camera1Out = parseInt(
+      camera1Summary["summary.ExitedSubtotal.Total"] || "0"
+    );
+    const camera2In = parseInt(
+      camera2Summary["summary.EnteredSubtotal.Total"] || "0"
+    );
+    const camera2Out = parseInt(
+      camera2Summary["summary.ExitedSubtotal.Total"] || "0"
+    );
+
+    console.log(`Camera 1 data - In: ${camera1In}, Out: ${camera1Out}`);
+    console.log(`Camera 2 data - In: ${camera2In}, Out: ${camera2Out}`);
+
+    // อัพเดทข้อมูลบน Cards
+    animateValue(
+      document.getElementById("camera1In"),
+      camera1In.toLocaleString("th-TH")
+    );
+    animateValue(
+      document.getElementById("camera1Out"),
+      camera1Out.toLocaleString("th-TH")
+    );
+    animateValue(
+      document.getElementById("camera2In"),
+      camera2In.toLocaleString("th-TH")
+    );
+    animateValue(
+      document.getElementById("camera2Out"),
+      camera2Out.toLocaleString("th-TH")
+    );
+
+    // คำนวณยอดรวม
+    calculateTotals(camera1In, camera1Out, camera2In, camera2Out);
+
+    // อัพเดทสถานะกล้อง
+    updateCameraStatus(1, camera1Summary["summary.Channel"] !== undefined);
+    updateCameraStatus(2, camera2Summary["summary.Channel"] !== undefined);
+
+    // ดึงข้อมูลรายชั่วโมงสำหรับกราฟ
+    const camera1HourlyDataPromise = getHourlyData("1", 1, startDate, endDate);
+    const camera2HourlyDataPromise = getHourlyData("2", 1, startDate, endDate);
+
+    const [camera1HourlyData, camera2HourlyData] = await Promise.all([
+      camera1HourlyDataPromise,
+      camera2HourlyDataPromise,
+    ]);
+
+    // อัพเดทกราฟ
+    updateCharts(camera1HourlyData, camera2HourlyData);
+
+    // อัพเดทเวลาล่าสุด
+    updateLastUpdatedTime();
+
+    console.log("Data fetch completed successfully");
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  } finally {
+    hideLoading(); // ซ่อน Loading Overlay
+  }
+}
+
+// เรียกข้อมูลครั้งแรกเมื่อโหลดหน้า
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("Dashboard initialized");
+
+  // เพิ่ม CSS animation สำหรับการอัพเดทตัวเลข
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes numberChanged {
+      0% { transform: translateY(-5px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    
+    .number-updated {
+      animation: numberChanged 0.5s ease;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // กำหนดสถานะออฟไลน์เริ่มต้นของกล้อง
+  updateCameraStatus(1, false);
+  updateCameraStatus(2, false);
+
+  // โหลดข้อมูลครั้งแรก
+  fetchData();
+
+  // ตั้งค่าให้ดึงข้อมูลทุก 30 วินาที
+  fetchInterval = setInterval(() => {
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
+
+    if (startDate && endDate) {
+      fetchData(startDate, endDate);
+    } else {
+      fetchData();
+    }
+  }, 30000);
+
+  // การจัดการฟอร์มค้นหา
+  document.getElementById("dateFilterForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
+
+    if (startDate && endDate) {
+      fetchData(startDate, endDate);
+    } else {
+      alert("กรุณาระบุวันที่เริ่มต้นและวันที่สิ้นสุด");
+    }
+  });
+
+  // เพิ่มฟังก์ชั่นสำหรับปุ่มรีเฟรช
+  document.getElementById("refreshData").addEventListener("click", () => {
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
+
+    if (startDate && endDate) {
+      fetchData(startDate, endDate);
+    } else {
+      fetchData();
+    }
+  });
+});
+
+// ฟังก์ชันหยุดการอัพเดทเมื่อออกจากหน้า
+window.addEventListener("unload", () => {
+  if (fetchInterval) {
+    clearInterval(fetchInterval);
+  }
+});
