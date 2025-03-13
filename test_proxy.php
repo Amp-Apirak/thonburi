@@ -1,5 +1,8 @@
 <?php
-$cameraIP = "192.168.1.11"; // ทดสอบกับกล้องตัวแรกก่อน
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+$cameraIP = "192.168.1.11";
 $user = "admin";
 $pass = "P4ssw0rd";
 $url = "http://$cameraIP/cgi-bin/videoStatServer.cgi?action=getSummary";
@@ -9,9 +12,15 @@ curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_USERPWD, "$user:$pass");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-$response = curl_exec($ch);
-curl_close($ch);
+curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 
-echo "<pre>";
-var_dump($response);
-echo "</pre>";
+// ดักจับ Error จาก cURL
+$response = curl_exec($ch);
+if (curl_errno($ch)) {
+    echo 'Curl error: ' . curl_error($ch);
+} else {
+    echo "<pre>";
+    var_dump($response);
+    echo "</pre>";
+}
+curl_close($ch);
