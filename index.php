@@ -18,10 +18,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="css/adminlte.css" />
   <link rel="stylesheet" href="css/custom.css" />
-  <link rel="stylesheet" href="css/dashboard-styles.css" />
 
   <!-- ApexCharts -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css" />
+  
+  <!-- เพิ่ม Google Fonts - Prompt เป็นฟอนต์ไทยที่อ่านง่ายและทันสมัย -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap">
 </head>
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -38,7 +40,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-6">
-              <h3 class="mb-0">Dashboard</h3>
+              <h3 class="mb-0 dash-title"><i class="bi bi-speedometer2 me-2"></i>Dashboard</h3>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-end">
@@ -58,77 +60,137 @@
       <div class="app-content">
         <div class="container-fluid">
           <!-- ส่วนของตัวกรองวันที่และเวลา -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-header">
+          <div class="row mb-4">
+            <div class="col-md-7">
+              <div class="card filter-card">
+                <div class="card-header d-flex align-items-center">
+                  <div class="card-icon-bg me-2">
+                    <i class="bi bi-calendar-range"></i>
+                  </div>
                   <h3 class="card-title">ค้นหาข้อมูลตามวันที่และเวลา</h3>
+                  <div class="ms-auto">
+                    <button type="button" class="btn btn-sm refresh-btn" id="refreshData">
+                      <i class="bi bi-arrow-repeat"></i>
+                    </button>
+                  </div>
                 </div>
                 <div class="card-body">
                   <form id="dateFilterForm">
-                    <div class="row">
-                      <div class="col-md-5">
-                        <label>วันที่เริ่มต้น</label>
-                        <input type="date" id="startDate" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+                    <div class="row align-items-end">
+                      <div class="col-md-4 mb-3 mb-md-0">
+                        <label><i class="bi bi-calendar3 me-1"></i>วันที่เริ่มต้น</label>
+                        <input type="date" id="startDate" class="form-control custom-input" value="<?php echo date('Y-m-d'); ?>">
                       </div>
-                      <div class="col-md-5">
-                        <label>วันที่สิ้นสุด</label>
-                        <input type="date" id="endDate" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+                      <div class="col-md-4 mb-3 mb-md-0">
+                        <label><i class="bi bi-calendar3-week me-1"></i>วันที่สิ้นสุด</label>
+                        <input type="date" id="endDate" class="form-control custom-input" value="<?php echo date('Y-m-d'); ?>">
                       </div>
-                      <div class="col-md-2">
-                        <label>&nbsp;</label>
-                        <button type="submit" class="btn btn-primary btn-block">ค้นหา</button>
+                      <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary btn-search w-100">
+                          <i class="bi bi-search me-2"></i>ค้นหา
+                        </button>
                       </div>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
+            
+            <!-- สรุปยอดรวม -->
+            <div class="col-md-5">
+              <div class="card summary-card">
+                <div class="card-header">
+                  <h3 class="card-title"><i class="bi bi-people-fill me-2"></i>ยอดรวมทั้งหมด</h3>&nbsp; 
+                  <span class="last-updated" id="last-updated-display">อัพเดตล่าสุด: <span id="last-updated-time">-</span></span>
+                </div>
+                <div class="card-body p-0">
+                  <div class="summary-counters">
+                    <div class="counter-item in-counter">
+                      <div class="counter-icon">
+                        <i class="fas fa-sign-in-alt"></i>
+                      </div>
+                      <div class="counter-info">
+                        <p class="counter-label">คนเข้า</p>
+                        <h3 class="counter-value" id="totalIn">0</h3>
+                      </div>
+                    </div>
+                    <div class="counter-item out-counter">
+                      <div class="counter-icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                      </div>
+                      <div class="counter-info">
+                        <p class="counter-label">คนออก</p>
+                        <h3 class="counter-value" id="totalOut">0</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Row 1: Cards สำหรับนับจำนวนคนเข้า-ออก -->
-          <div class="row">
+          <div class="row mb-4">
             <!-- Card 1: จำนวนคนเข้า กล้องตัวที่ 1 -->
-            <div class="col-md-3">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">กล้อง 1: จำนวนคนเข้า</h3>
+            <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
+              <div class="stat-card camera1-in">
+                <div class="stat-icon">
+                  <i class="fas fa-video"></i>
                 </div>
-                <div class="card-body">
-                  <h3 id="camera1In">0</h3>
+                <div class="stat-info">
+                  <p class="stat-title">กล้อง 1: คนเข้า</p>
+                  <h3 class="stat-value" id="camera1In">0</h3>
+                  <div class="stat-badge">
+                    <span class="status-indicator active"></span>ออนไลน์
+                  </div>
                 </div>
               </div>
             </div>
+            
             <!-- Card 2: จำนวนคนออก กล้องตัวที่ 1 -->
-            <div class="col-md-3">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">กล้อง 1: จำนวนคนออก</h3>
+            <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
+              <div class="stat-card camera1-out">
+                <div class="stat-icon">
+                  <i class="fas fa-video"></i>
                 </div>
-                <div class="card-body">
-                  <h3 id="camera1Out">0</h3>
+                <div class="stat-info">
+                  <p class="stat-title">กล้อง 1: คนออก</p>
+                  <h3 class="stat-value" id="camera1Out">0</h3>
+                  <div class="stat-badge">
+                    <span class="status-indicator active"></span>ออนไลน์
+                  </div>
                 </div>
               </div>
             </div>
+            
             <!-- Card 3: จำนวนคนเข้า กล้องตัวที่ 2 -->
-            <div class="col-md-3">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">กล้อง 2: จำนวนคนเข้า</h3>
+            <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
+              <div class="stat-card camera2-in">
+                <div class="stat-icon">
+                  <i class="fas fa-video"></i>
                 </div>
-                <div class="card-body">
-                  <h3 id="camera2In">0</h3>
+                <div class="stat-info">
+                  <p class="stat-title">กล้อง 2: คนเข้า</p>
+                  <h3 class="stat-value" id="camera2In">0</h3>
+                  <div class="stat-badge">
+                    <span class="status-indicator active"></span>ออนไลน์
+                  </div>
                 </div>
               </div>
             </div>
+            
             <!-- Card 4: จำนวนคนออก กล้องตัวที่ 2 -->
-            <div class="col-md-3">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">กล้อง 2: จำนวนคนออก</h3>
+            <div class="col-md-3 col-sm-6">
+              <div class="stat-card camera2-out">
+                <div class="stat-icon">
+                  <i class="fas fa-video"></i>
                 </div>
-                <div class="card-body">
-                  <h3 id="camera2Out">0</h3>
+                <div class="stat-info">
+                  <p class="stat-title">กล้อง 2: คนออก</p>
+                  <h3 class="stat-value" id="camera2Out">0</h3>
+                  <div class="stat-badge">
+                    <span class="status-indicator active"></span>ออนไลน์
+                  </div>
                 </div>
               </div>
             </div>
@@ -137,21 +199,38 @@
           <!-- Row 2: กราฟแท่งแนวตั้ง -->
           <div class="row">
             <!-- กราฟ 1: จำนวนคนเข้า กล้องตัวที่ 1 รายชั่วโมง -->
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">กล้อง 1: จำนวนคนเข้ารายชั่วโมง (08:00 - 21:00)</h3>
+            <div class="col-md-6 mb-4">
+              <div class="card chart-card">
+                <div class="card-header d-flex align-items-center">
+                  <div class="card-icon-bg me-2 chart1-icon">
+                    <i class="bi bi-bar-chart-fill"></i>
+                  </div>
+                  <h3 class="card-title">กล้อง 1: จำนวนคนเข้ารายชั่วโมง</h3>
+                  <div class="ms-auto">
+                    <div class="chart-period">
+                      <span class="period-label">08:00 - 21:00</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="card-body">
                   <div id="chartCamera1" class="chart-container"></div>
                 </div>
               </div>
             </div>
+            
             <!-- กราฟ 2: จำนวนคนเข้า กล้องตัวที่ 2 รายชั่วโมง -->
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">กล้อง 2: จำนวนคนเข้ารายชั่วโมง (08:00 - 21:00)</h3>
+            <div class="col-md-6 mb-4">
+              <div class="card chart-card">
+                <div class="card-header d-flex align-items-center">
+                  <div class="card-icon-bg me-2 chart2-icon">
+                    <i class="bi bi-bar-chart-fill"></i>
+                  </div>
+                  <h3 class="card-title">กล้อง 2: จำนวนคนเข้ารายชั่วโมง</h3>
+                  <div class="ms-auto">
+                    <div class="chart-period">
+                      <span class="period-label">08:00 - 21:00</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="card-body">
                   <div id="chartCamera2" class="chart-container"></div>
@@ -171,7 +250,7 @@
     <!-- Loading Overlay - ปรับปรุงใหม่ให้สวยงามขึ้น -->
     <div id="loading-overlay" style="display: none;">
       <div class="spinner-wrapper">
-        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+        <div class="spinner-grow text-primary" role="status" style="width: 3rem; height: 3rem;">
           <span class="visually-hidden">กำลังโหลด...</span>
         </div>
         <div class="loading-text">กำลังโหลดข้อมูล...</div>
