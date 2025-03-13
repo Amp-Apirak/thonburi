@@ -20,6 +20,23 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 $camera = isset($_GET['camera']) ? $_GET['camera'] : '';
 $channel = isset($_GET['channel']) ? $_GET['channel'] : '1';
 
+// เลือกใช้ข้อมูลจำลองเมื่อมีการเรียกใช้งาน API
+$useMockData = true; // ตั้งค่าเป็น true เพื่อใช้ข้อมูลจำลอง
+
+// หากใช้ข้อมูลจำลอง ให้เรียกใช้ไฟล์ mock_data.php
+if ($useMockData) {
+    // ตรวจสอบว่าไฟล์ mock_data.php มีอยู่หรือไม่
+    if (file_exists('mock_data.php')) {
+        $logMessage = date('Y-m-d H:i:s') . " - Using mock data for: " . $_SERVER['REQUEST_URI'] . "\n";
+        file_put_contents($logFile, $logMessage, FILE_APPEND);
+        
+        // ส่งพารามิเตอร์ไปยัง mock_data.php
+        $_GET['mockSourceFile'] = 'api_proxy';
+        include_once 'mock_data.php';
+        exit;
+    }
+}
+
 // ตรวจสอบว่าการกระทำ 'ping' ไม่จำเป็นต้องมีพารามิเตอร์กล้อง
 if ($action === 'ping') {
     if (empty($camera)) {
@@ -34,10 +51,15 @@ if ($action === 'ping') {
     exit;
 }
 
-// กำหนด IP ของกล้อง
+// กำหนด IP และพอร์ตของกล้อง
 $camera_ips = [
     '1' => '192.168.1.14',
     '2' => '192.168.1.11'
+];
+
+$camera_ports = [
+    '1' => '80',
+    '2' => '80'
 ];
 
 if (!isset($camera_ips[$camera])) {
@@ -47,10 +69,11 @@ if (!isset($camera_ips[$camera])) {
 }
 
 $camera_ip = $camera_ips[$camera];
+$port = $camera_ports[$camera];
 
-// กำหนดข้อมูลการยืนยันตัวตน (แก้ไขตามข้อมูลจริงของกล้อง)
+// กำหนดข้อมูลการยืนยันตัวตน (ใช้ข้อมูลจริงของกล้อง)
 $username = 'admin';
-$password = 'P4ssw0rd'; // แก้ไขรหัสผ่านตามที่ตั้งค่าจริงในกล้อง
+$password = 'P4ssw0rd'; // รหัสผ่านที่ถูกต้อง
 
 // สร้าง URL ตามการกระทำ
 $url = '';
@@ -62,20 +85,20 @@ $count = isset($_GET['count']) ? $_GET['count'] : '';
 
 switch ($action) {
     case 'ping':
-        // ใช้ API ที่เรียบง่ายเพื่อตรวจสอบว่ากล้องออนไลน์หรือไม่
-        $url = "http://$camera_ip/cgi-bin/global.cgi?action=getCurrentTime";
+        // ทดลองใช้ API เรียบง่ายเพื่อตรวจสอบการเชื่อมต่อ
+        $url = "http://$camera_ip:$port/cgi-bin/magicBox.cgi?action=getDeviceType";
         break;
     case 'getSummary':
-        $url = "http://$camera_ip/cgi-bin/videoStatServer.cgi?action=getSummary&channel=$channel";
+        $url = "http://$camera_ip:$port/cgi-bin/videoStatServer.cgi?action=getSummary&channel=$channel";
         break;
     case 'startFind':
-        $url = "http://$camera_ip/cgi-bin/videoStatServer.cgi?action=startFind&channel=$channel&condition.StartTime=$startTime&condition.EndTime=$endTime&condition.Granularity=Hour";
+        $url = "http://$camera_ip:$port/cgi-bin/videoStatServer.cgi?action=startFind&channel=$channel&condition.StartTime=$startTime&condition.EndTime=$endTime&condition.Granularity=Hour";
         break;
     case 'doFind':
-        $url = "http://$camera_ip/cgi-bin/videoStatServer.cgi?action=doFind&channel=$channel&token=$token&beginNumber=$beginNumber&count=$count";
+        $url = "http://$camera_ip:$port/cgi-bin/videoStatServer.cgi?action=doFind&channel=$channel&token=$token&beginNumber=$beginNumber&count=$count";
         break;
     case 'stopFind':
-        $url = "http://$camera_ip/cgi-bin/videoStatServer.cgi?action=stopFind&token=$token&channel=$channel";
+        $url = "http://$camera_ip:$port/cgi-bin/videoStatServer.cgi?action=stopFind&token=$token&channel=$channel";
         break;
     default:
         header('Content-Type: application/json');
@@ -91,41 +114,50 @@ file_put_contents($logFile, $logMessage, FILE_APPEND);
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// ทดลองวิธีการยืนยันตัวตนแบบต่างๆ
 curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
-curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY); // ลองใช้ CURLAUTH_ANY เพื่อให้ cURL เลือกวิธีการยืนยันตัวตนที่เหมาะสม
+curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST); // ลองใช้ Digest Authentication
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:')); // สำหรับ Digest Authentication
+
+// ตั้งค่าการทำงานละเอียด เพื่อตรวจสอบข้อผิดพลาด
+curl_setopt($ch, CURLOPT_VERBOSE, true);
+$verbose = fopen('php://temp', 'w+');
+curl_setopt($ch, CURLOPT_STDERR, $verbose);
+
+// ตั้งค่าอื่นๆ ของ cURL
 curl_setopt($ch, CURLOPT_FAILONERROR, false); // ไม่ล้มเหลวในข้อผิดพลาด HTTP
 curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1); // ใช้ HTTP 1.1
-
-// ตั้งค่าการหมดเวลา
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5); // เวลาหมดในการเชื่อมต่อ (วินาที)
 curl_setopt($ch, CURLOPT_TIMEOUT, 10); // เวลาหมดสำหรับการดำเนินการทั้งหมด (วินาที)
-
-// ตั้งค่าเพิ่มเติมเพื่อจัดการกับการเปลี่ยนเส้นทาง
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // ติดตามการเปลี่ยนเส้นทาง
-curl_setopt($ch, CURLOPT_MAXREDIRS, 5);        // จำนวนการเปลี่ยนเส้นทางสูงสุด
-
-// ไม่ตรวจสอบใบรับรองความปลอดภัย SSL
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-
-// ทดลองใช้ User-Agent
+curl_setopt($ch, CURLOPT_MAXREDIRS, 5); // จำนวนการเปลี่ยนเส้นทางสูงสุด
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // ไม่ตรวจสอบ SSL
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); // ไม่ตรวจสอบ SSL
 curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
 
 // ดำเนินการส่งคำขอ
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-$effectiveUrl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL); // URL สุดท้ายหลังการเปลี่ยนเส้นทาง
+$effectiveUrl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
 $error = curl_error($ch);
 $info = curl_getinfo($ch);
-curl_close($ch);
 
 // บันทึกข้อมูลการตอบกลับ
 $logMessage = date('Y-m-d H:i:s') . " - Response received. HTTP Code: $httpCode, Length: " . strlen($response) . "\n";
 $logMessage .= "Effective URL: $effectiveUrl\n";
 if ($error) {
     $logMessage .= "Error: $error\n";
+    
+    // บันทึกข้อมูลละเอียดเพิ่มเติม
+    rewind($verbose);
+    $verboseLog = stream_get_contents($verbose);
+    $logMessage .= "Verbose info:\n" . $verboseLog . "\n";
 }
 file_put_contents($logFile, $logMessage, FILE_APPEND);
+
+// ปิด cURL
+curl_close($ch);
 
 // ถ้าเป็นการ ping และไม่มีการตอบสนอง ให้ส่งสถานะ offline
 if ($action === 'ping') {

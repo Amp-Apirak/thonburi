@@ -6,11 +6,15 @@
  * สร้างการตอบสนองในรูปแบบเดียวกับที่ได้จาก API ของกล้อง
  */
 
-// กำหนดประเภทเนื้อหาเป็นข้อความธรรมดา
-header('Content-Type: text/plain');
+// กำหนดประเภทเนื้อหาเป็นข้อความธรรมดา (ยกเว้นกรณี ping ที่ต้องเป็น JSON)
+$action = isset($_GET['action']) ? $_GET['action'] : '';
+if ($action === 'ping') {
+    header('Content-Type: application/json');
+} else {
+    header('Content-Type: text/plain');
+}
 
 // ดึงพารามิเตอร์
-$action = isset($_GET['action']) ? $_GET['action'] : '';
 $camera = isset($_GET['camera']) ? $_GET['camera'] : '1';
 $channel = isset($_GET['channel']) ? $_GET['channel'] : '1';
 $startTime = isset($_GET['startTime']) ? $_GET['startTime'] : date('Y-m-d').' 00:00:00';
@@ -18,6 +22,11 @@ $endTime = isset($_GET['endTime']) ? $_GET['endTime'] : date('Y-m-d').' 23:59:59
 $token = isset($_GET['token']) ? $_GET['token'] : 'mock_token_'.time();
 $beginNumber = isset($_GET['beginNumber']) ? (int)$_GET['beginNumber'] : 0;
 $count = isset($_GET['count']) ? (int)$_GET['count'] : 100;
+
+// บันทึกล็อกการใช้งานข้อมูลจำลอง
+$logFile = 'mock_data_log.txt';
+$logMessage = date('Y-m-d H:i:s') . " - Mock data used: action=$action, camera=$camera\n";
+file_put_contents($logFile, $logMessage, FILE_APPEND);
 
 // เตรียมค่าพื้นฐานตามไอดีกล้อง
 $baseEnteredValue = ($camera == '1') ? 142 : 213;
@@ -32,7 +41,6 @@ $baseExitedValue += min($hoursElapsed, 30); // เพิ่มสูงสุด
 switch ($action) {
     case 'ping':
         // จำลองการตรวจสอบการเชื่อมต่อ - สามารถสุ่มสถานะเพื่อทดสอบการแสดงสถานะออนไลน์/ออฟไลน์
-        header('Content-Type: application/json');
         $isOnline = (rand(1, 10) > 2); // 80% โอกาสที่จะออนไลน์
         echo json_encode(['status' => $isOnline ? 'online' : 'offline']);
         break;
@@ -102,6 +110,21 @@ switch ($action) {
     case 'getCurrentTime':
         // จำลองการดึงเวลาปัจจุบัน - สำหรับการ ping
         echo "result = ".date('Y-m-d H:i:s')."\n";
+        break;
+        
+    case 'getDeviceType':
+        // จำลองประเภทอุปกรณ์ - สำหรับการ ping
+        echo "type=IPC\n";
+        break;
+
+    case 'getHardwareVersion':
+        // จำลองเวอร์ชันฮาร์ดแวร์
+        echo "version=1.00\n";
+        break;
+
+    case 'getSerialNo':
+        // จำลองหมายเลขซีเรียล
+        echo "sn=1234567890ABC\n";
         break;
         
     default:
