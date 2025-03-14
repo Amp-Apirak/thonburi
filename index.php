@@ -71,7 +71,7 @@
                   </h3>
                   &nbsp;
                   <span class="last-updated" id="last-updated-display">
-                    อัพเดตล่าสุด: <span id="last-updated-time">-</span>
+                    อัพเดตล่าสุด: &nbsp; <span id="last-updated-time">-</span>
                   </span>
                 </div>
                 <div class="card-body p-0">
