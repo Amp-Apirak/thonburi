@@ -16,7 +16,7 @@
             <li class="nav-item">
                 <span class="nav-link d-flex align-items-center">
                     <i class="bi bi-clock-history me-2"></i>
-                    อัปเดตล่าสุด: <span id="last-updated-time" class="ms-1 fw-semibold">-</span>
+                    อัปเดตล่าสุด: <span id="header-last-updated" class="ms-1 fw-semibold">-</span>
                 </span>
             </li>
         </ul>

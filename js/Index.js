@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  // ตั้งเวลาให้โหลดข้อมูลใหม่ทุก 5 นาที
-  setInterval(loadCSVData, 300000); // 5 * 60 * 1000 ms
+  // ตั้งเวลาให้โหลดข้อมูลใหม่ทุก 1 นาที
+  setInterval(loadCSVData, 60000); // 1 * 60 * 1000 ms
 });
 
 /**
@@ -47,14 +47,15 @@ function loadCSVData() {
       renderChart("chartCamera2", resultsCam2.chartData, "กล้อง 2: จำนวนคนเข้ารายชั่วโมง");
 
       // อัพเดตเวลาล่าสุด
-      // ถ้ามีข้อมูล timestamp จาก server
-      if (data.timestamps && (data.timestamps.camera1 || data.timestamps.camera2)) {
+      if (data.timestamps && data.timestamps.latest) {
+        updateLastUpdatedTime(data.timestamps.latest);
+      } else if (data.timestamps && (data.timestamps.camera1 || data.timestamps.camera2)) {
         // ใช้เวลาล่าสุดระหว่างทั้งสองกล้อง
         const latestTimestamp = Math.max(
           data.timestamps.camera1 || 0,
           data.timestamps.camera2 || 0
         );
-        updateLastUpdatedTime(latestTimestamp * 1000); // แปลงเป็น JS timestamp
+        updateLastUpdatedTime(latestTimestamp);
       } else {
         // ถ้าไม่มี timestamp จาก server ใช้เวลาปัจจุบัน
         updateLastUpdatedTime();
@@ -323,37 +324,46 @@ function showLoadingOverlay(show) {
 }
 
 /**
- * getCurrentDateTimeString: คืนข้อความวันที่-เวลา (YYYY-MM-DD HH:mm:ss)
+ * อัพเดตแสดงวันเวลาของไฟล์ล่าสุด
  */
-function getCurrentDateTimeString() {
-  const now = new Date();
-  const yyyy = now.getFullYear();
-  const mm = String(now.getMonth() + 1).padStart(2, '0');
-  const dd = String(now.getDate()).padStart(2, '0');
-  const hh = String(now.getHours()).padStart(2, '0');
-  const min = String(now.getMinutes()).padStart(2, '0');
-  const ss = String(now.getSeconds()).padStart(2, '0');
-  return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
-}
-
 /**
  * อัพเดตแสดงวันเวลาของไฟล์ล่าสุด
  */
 function updateLastUpdatedTime(fileTimestamp) {
   // ถ้ามี fileTimestamp จากไฟล์ CSV ให้ใช้ค่านั้น
   // แต่ถ้าไม่มีให้ใช้เวลาปัจจุบัน
-  const timestamp = fileTimestamp ? new Date(fileTimestamp) : new Date();
+  const timestamp = fileTimestamp ? new Date(fileTimestamp * 1000) : new Date();
   
-  // สร้างรูปแบบวันที่: YYYY-MM-DD HH:mm:ss
-  const yyyy = timestamp.getFullYear();
-  const mm = String(timestamp.getMonth() + 1).padStart(2, '0');
-  const dd = String(timestamp.getDate()).padStart(2, '0');
-  const hh = String(timestamp.getHours()).padStart(2, '0');
-  const min = String(timestamp.getMinutes()).padStart(2, '0');
-  const ss = String(timestamp.getSeconds()).padStart(2, '0');
+  // สร้างรูปแบบวันที่: วัน/เดือน/ปี เวลา
+  const options = { 
+    year: 'numeric', 
+    month: '2-digit', 
+    day: '2-digit',
+    hour: '2-digit', 
+    minute: '2-digit', 
+    second: '2-digit',
+    hour12: false
+  };
   
-  const formattedDateTime = `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
+  const formattedDateTime = timestamp.toLocaleString('th-TH', options);
   
-  // อัพเดตที่ element
-  document.getElementById("last-updated-time").textContent = formattedDateTime;
+  // รายการ element ID ที่ต้องการอัปเดต
+  const elementsToUpdate = [
+    "last-updated-time",    // หน้า Dashboard
+    "header-last-updated"   // ส่วน Header
+  ];
+  
+  // อัปเดตทุก element ที่พบ
+  elementsToUpdate.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.textContent = formattedDateTime;
+      
+      // เพิ่ม animation เล็กน้อย
+      element.classList.add('update-flash');
+      setTimeout(() => {
+        element.classList.remove('update-flash');
+      }, 1000);
+    }
+  });
 }
